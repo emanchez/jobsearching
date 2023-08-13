@@ -1,0 +1,9 @@
+{% if latest_job_listings %}
+<ul>
+  {% for listing in latest_job_listings %}
+  <li><a href="/joblist/{{ listing.id }}/">{{ listing.jobTitle }}</a></li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No jobs are available.</p>
+{% endif %}
