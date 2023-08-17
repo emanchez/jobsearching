@@ -4,3 +4,8 @@
 .row {
   margin-bottom: 10px;
 }
+.current {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}

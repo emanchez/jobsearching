@@ -27,6 +27,28 @@
             {% if forloop.counter|divisibleby:3 %}</div>{% endif %}
         </div>
       {% endfor %}
+      <ul class="pagination">
+        {% if latest_job_listings.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1">&laquo; first</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link"
+               href="?page={{ latest_job_listings.previous_page_number }}">previous</a>
+          </li>
+        {% endif %}
+        <span class="current">Page {{ latest_job_listings.number }} of {{ latest_job_listings.paginator.num_pages }}.</span>
+        {% if latest_job_listings.has_next %}
+          <li class="page-item">
+            <a class="page-link"
+               href="?page={{ latest_job_listings.next_page_number }}">next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link"
+               href="?page={{ latest_job_listings.paginator.num_pages }}">last &raquo;</a>
+          </li>
+        {% endif %}
+      </ul>
     {% else %}
       <p>No jobs are available.</p>
     {% endif %}
@@ -34,3 +56,4 @@
 {% endblock content %}
 <!-- referenced from: "https://docs.djangoproject.com/en/4.2/intro/tutorial03/" -->
 {% comment %} additional reference for tags: "https://docs.djangoproject.com/en/4.2/ref/templates/builtins/" {% endcomment %}
+{% comment %} reference for django pagination: "https://docs.djangoproject.com/en/4.2/topics/pagination/" {% endcomment %}
