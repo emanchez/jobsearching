@@ -1,17 +1,24 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"name": "django",
-			"path": "django"
-		}
-	],
-	"settings": {
-		"[python]": {
-			"editor.defaultFormatter": "ms-python.autopep8"
-		},
-		"python.formatting.provider": "none"
-	}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "name": "django",
+      "path": "django"
+    }
+  ],
+  "settings": {
+    "[python]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[django-html]": {
+      "editor.defaultFormatter": "monosans.djlint"
+    },
+    "python.formatting.provider": "none",
+    "files.associations": {
+      "**/templates/*.html": "django-html",
+      "**/templates/*": "django-txt"
+    }
+  }
 }

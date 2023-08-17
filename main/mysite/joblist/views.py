@@ -8,6 +8,9 @@ from django.template import loader
 def listing(request, jobId):
     return HttpResponse("You're looking at job # %s." % jobId)
 
+def error(request):
+    return HttpResponse("404 page not found")
+
 def index(request):
     latestListing = JobListing.objects.all()[:10]
     template = loader.get_template("joblist/index.html")

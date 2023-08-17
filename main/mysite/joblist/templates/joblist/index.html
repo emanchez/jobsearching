@@ -1,9 +1,36 @@
-{% if latest_job_listings %}
-<ul>
-  {% for listing in latest_job_listings %}
-  <li><a href="/joblist/{{ listing.id }}/">{{ listing.jobTitle }}</a></li>
-  {% endfor %}
-</ul>
-{% else %}
-<p>No jobs are available.</p>
-{% endif %}
+{% extends "./base.html" %}
+{% block cssFile %}
+  {% load static %}
+  <link href={% static 'joblist/css/index.css' %} rel="stylesheet" />
+{% endblock cssFile %}
+{% block title %}
+  All Job Listings
+{% endblock title %}
+{% block content %}
+  <div class="container">
+    {% if latest_job_listings %}
+      {% for listing in latest_job_listings %}
+        {% if forloop.counter0|divisibleby:3 %}<div class="row">{% endif %}
+          <div class="col col-lg-4 col-md-12 col-sm-12">
+            {% url 'listing' listing.id as internalUrl %}
+            <a href={{ internalUrl }}>
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-body">
+                  <h2>{{ listing.jobTitle }}</h2>
+                  <h4>around {{ listing.jobLocation }}</h4>
+                  <h4>details: {{ listing.jobAttributes }}</h4>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </a>
+            {% if forloop.counter|divisibleby:3 %}</div>{% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>No jobs are available.</p>
+    {% endif %}
+  </div>
+{% endblock content %}
+<!-- referenced from: "https://docs.djangoproject.com/en/4.2/intro/tutorial03/" -->
+{% comment %} additional reference for tags: "https://docs.djangoproject.com/en/4.2/ref/templates/builtins/" {% endcomment %}
